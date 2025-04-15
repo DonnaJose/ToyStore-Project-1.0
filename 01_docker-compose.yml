@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  mysql-db:
+    image: mysql:8
+    container_name: mysql-container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: toystoredb
+     # MYSQL_USER: root
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+    networks:
+      - springboot-network
+
+  spring-app:
+    build: .
+    container_name: toystore-apps
+    depends_on:
+      - mysql-db
+    ports:
+      - "8080:8080"
+    networks:
+      - springboot-network
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/toystore
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: password
+
+networks:
+  springboot-network:
