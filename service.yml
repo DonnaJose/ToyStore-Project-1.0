@@ -1,0 +1,109 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    creationTimestamp: "2025-04-16T14:45:21Z"
+    labels:
+      component: apiserver
+      provider: kubernetes
+    name: kubernetes
+    namespace: default
+    resourceVersion: "196"
+    uid: 41cbc239-248c-4637-9186-6aedb117e8a7
+  spec:
+    clusterIP: 34.118.224.1
+    clusterIPs:
+    - 34.118.224.1
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - name: https
+      port: 443
+      protocol: TCP
+      targetPort: 443
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      cloud.google.com/neg: '{"ingress":true}'
+    creationTimestamp: "2025-04-16T16:54:15Z"
+    finalizers:
+    - service.kubernetes.io/load-balancer-cleanup
+    labels:
+      app: mysql
+    name: mysql
+    namespace: default
+    resourceVersion: "85160"
+    uid: d89294a9-5c47-4566-aed6-4d12335f93da
+  spec:
+    allocateLoadBalancerNodePorts: true
+    clusterIP: 34.118.226.109
+    clusterIPs:
+    - 34.118.226.109
+    externalTrafficPolicy: Cluster
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - nodePort: 31831
+      port: 3306
+      protocol: TCP
+      targetPort: 3306
+    selector:
+      app: mysql
+    sessionAffinity: None
+    type: LoadBalancer
+  status:
+    loadBalancer:
+      ingress:
+      - ip: 34.134.98.191
+        ipMode: VIP
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      cloud.google.com/neg: '{"ingress":true}'
+    creationTimestamp: "2025-04-16T16:56:56Z"
+    finalizers:
+    - service.kubernetes.io/load-balancer-cleanup
+    labels:
+      app: toystore1
+    name: toystore1
+    namespace: default
+    resourceVersion: "86898"
+    uid: fc329165-8d1f-4cbf-a825-f769d06693a8
+  spec:
+    allocateLoadBalancerNodePorts: true
+    clusterIP: 34.118.225.73
+    clusterIPs:
+    - 34.118.225.73
+    externalTrafficPolicy: Cluster
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - nodePort: 32369
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+    selector:
+      app: toystore1
+    sessionAffinity: None
+    type: LoadBalancer
+  status:
+    loadBalancer:
+      ingress:
+      - ip: 104.198.181.254
+        ipMode: VIP
+kind: List
+metadata:
+  resourceVersion: ""
