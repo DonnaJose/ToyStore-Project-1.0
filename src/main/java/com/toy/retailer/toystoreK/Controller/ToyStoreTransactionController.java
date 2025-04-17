@@ -25,6 +25,10 @@ public class ToyStoreTransactionController {
 	    public String welcomePage() {
 	        return "Welcome To The Toyshop";
 	    }
+	 	@GetMapping("/gcp")
+	    public String GCPsetup() {
+	        return "Welcome To The Toyshop";
+	    }
 	    @GetMapping("/pos/transaction")
 	    public List<ToyStoreTransaction01> getAllTransactions() {
 	        return toyStoreTransactionService.getAllTransactions();
