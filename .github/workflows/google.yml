@@ -44,9 +44,9 @@ env:
   GKE_CLUSTER: 'cluster-1' # TODO: update to your cluster name
   GKE_ZONE: 'us-central1-c' # TODO: update to your cluster zone
   DEPLOYMENT_NAME: 'toystore-app' # TODO: update to your deployment name
-  REPOSITORY: 'samples' # TODO: update to your Artifact Registry docker repository name
+  REPOSITORY: 'repo' # TODO: update to your Artifact Registry docker repository name
   IMAGE: 'donnajose/toystore-project:1.0.0'
-  WORKLOAD_IDENTITY_PROVIDER: 'https://iam.googleapis.com/projects/1090737081467/locations/global/workloadIdentityPools/admin-identity-01/providers/github' # TODO: update to your workload identity provider
+  WORKLOAD_IDENTITY_PROVIDER: 'projects/1090737081467/locations/global/workloadIdentityPools/admin-identity-01/providers/github' # TODO: update to your workload identity provider
 
 jobs:
   setup-build-publish-deploy:
