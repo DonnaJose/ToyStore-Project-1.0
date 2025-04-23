@@ -17,8 +17,7 @@ jobs:
         inputs:
           versionSpec: '17'
           jdkArchitectureOption: x64
-          jdkSourceOption: LocalDirectory
-    
+          jdkSourceOption: AzureStorage
       - task: Maven@1
         inputs:
            mavenPomFile: 'pom.xml'
