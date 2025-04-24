@@ -67,7 +67,7 @@ stages:
         eq(variables['Build.SourceBranchName'], 'master')
       )
    jobs:
-     -job: DevJob
+     -job: DevJob 
       
 
 # steps:
