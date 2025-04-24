@@ -9,21 +9,53 @@ trigger:
 
 pool:
   vmImage: ubuntu-latest
-stagees:
-  stage: Build
-  displayName: 'Build Stage'
-  jobs:
-        - job: Build Job
-          steps:
-            - task: JavaToolInstaller@0
-              inputs:
-                versionSpec: '17'
-                jdkArchitectureOption: x64
-                jdkSourceOption: PreInstalled
-            - task: Maven@1
-              inputs:
-                mavenPomFile: 'pom.xml'
-                goals: 'clean compile'    
+# stagees:
+#   stage: Build
+#   displayName: 'Build Stage'
+#   jobs:
+#         - job: Build Job
+#           steps:
+#             - task: JavaToolInstaller@0
+#               inputs:
+#                 versionSpec: '17'
+#                 jdkArchitectureOption: x64
+#                 jdkSourceOption: PreInstalled
+#             - task: Maven@1
+#               inputs:
+#                 mavenPomFile: 'pom.xml'
+#                 goals: 'clean compile' 
+stages:
+  - stage: Build
+    displayName: 'Build Stage'
+    jobs:
+      - job: BuildJob
+        displayName: 'Build and Package Java App'
+        pool:
+          vmImage: 'ubuntu-latest'
+
+        steps:
+          - task: UseJavaVersion@1
+            inputs:
+              versionSpec: '17'
+              jdkArchitecture: 'x64'
+              jdkSourceOption: PreInstalled
+            displayName: 'Set up Java 17'
+
+          - task: Maven@3
+            inputs:
+              mavenPomFile: 'pom.xml'
+              goals: 'clean package'
+              options: '-Xmx1024m'
+              publishJUnitResults: true
+              testResultsFiles: '**/surefire-reports/TEST-*.xml'
+            displayName: 'Build with Maven'
+
+          - task: PublishBuildArtifacts@1
+            inputs:
+              PathtoPublish: 'target'
+              ArtifactName: 'java-app'
+              publishLocation: 'Container'
+            displayName: 'Publish Build Artifacts'   
 # steps:
 # - script: echo Hello Hello Hello, world!
 #   displayName: 'Run a one-line script'
