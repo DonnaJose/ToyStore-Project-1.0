@@ -57,7 +57,7 @@ stages:
               ArtifactName: 'java-app'
               publishLocation: 'Container'
             displayName: 'Publish Build Artifacts'
-          - bash: echo $(branch_name) ABC     
+          - bash: echo ${env:BRANCH_NAME} ABC     
 # steps:
 # - script: echo Hello Hello Hello, world!
 #   displayName: 'Run a one-line script'
