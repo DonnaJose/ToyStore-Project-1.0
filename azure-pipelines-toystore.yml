@@ -60,7 +60,12 @@ stages:
           - bash: echo $(Build.SourceBranchName) ABC  
   -stage: Dev
    displayName : Dev Staging
-   condition: succeeded()
+   condition: |
+      and
+      (
+        succeeded(),
+        eq(variables['Build.SourceBranchName'], 'master')
+      )
    jobs:
      -job: DevJob
       
