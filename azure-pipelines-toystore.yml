@@ -45,7 +45,7 @@ stages:
             inputs:
               mavenPomFile: 'pom.xml'
               goals: 'clean package'
-              options: '-Xmx1024m'
+              #options: '-Xmx1024m'
               publishJUnitResults: true
               testResultsFiles: '**/surefire-reports/TEST-*.xml'
             displayName: 'Build with Maven'
