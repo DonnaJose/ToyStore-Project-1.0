@@ -34,7 +34,7 @@ stages:
           vmImage: 'ubuntu-latest'
 
         steps:
-        
+          - bash: echo $(branch_name)
           - task: JavaToolInstaller@0
             inputs:
               versionSpec: '17'
@@ -56,7 +56,8 @@ stages:
               PathtoPublish: 'target'
               ArtifactName: 'java-app'
               publishLocation: 'Container'
-            displayName: 'Publish Build Artifacts'   
+            displayName: 'Publish Build Artifacts'
+          - bash: echo $(branch_name)     
 # steps:
 # - script: echo Hello Hello Hello, world!
 #   displayName: 'Run a one-line script'
