@@ -57,7 +57,14 @@ stages:
               ArtifactName: 'java-app'
               publishLocation: 'Container'
             displayName: 'Publish Build Artifacts'
-          - bash: echo $(Build.BuildId) ABC        
+          - bash: echo $(Build.SourceBranchName) ABC  
+  -stage: Dev
+   displayName : Dev Staging
+   condition: succeeded()
+   jobs:
+     -job: DevJob
+      
+
 # steps:
 # - script: echo Hello Hello Hello, world!
 #   displayName: 'Run a one-line script'
