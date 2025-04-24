@@ -9,19 +9,21 @@ trigger:
 
 pool:
   vmImage: ubuntu-latest
-
-jobs:
-  - job:
-    steps:
-      - task: JavaToolInstaller@0
-        inputs:
-          versionSpec: '17'
-          jdkArchitectureOption: x64
-          jdkSourceOption: PreInstalled
-      - task: Maven@1
-        inputs:
-           mavenPomFile: 'pom.xml'
-           goals: 'clean compile'    
+stagees:
+  stage: Build
+  displayName: 'Build Stage'
+  jobs:
+        - job: Build Job
+          steps:
+            - task: JavaToolInstaller@0
+              inputs:
+                versionSpec: '17'
+                jdkArchitectureOption: x64
+                jdkSourceOption: PreInstalled
+            - task: Maven@1
+              inputs:
+                mavenPomFile: 'pom.xml'
+                goals: 'clean compile'    
 # steps:
 # - script: echo Hello Hello Hello, world!
 #   displayName: 'Run a one-line script'
