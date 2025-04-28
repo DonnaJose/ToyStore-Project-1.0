@@ -73,7 +73,7 @@ stages:
         displayName: Dev job  
   - stage: Test
     displayName : Test Staging
-    condition: and(succeeded(), eq(variables['Build.Reason'], 'Schedule'))
+    #condition: and(succeeded(), eq(variables['Build.Reason'], 'Schedule'))
     jobs:
       - job: Test
         displayName: Test job        
