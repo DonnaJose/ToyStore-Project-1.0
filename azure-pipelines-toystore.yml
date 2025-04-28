@@ -68,7 +68,16 @@ stages:
       )
    jobs:
      -job: DevJob 
-      
+  -stage: Test
+   displayName : Test Phase
+   condition: |
+      and
+      (
+        succeeded(),
+        eq(variables['Build.SourceBranchName'], 'master')
+      )
+   jobs:
+     -job: Test Job    
 
 # steps:
 # - script: echo Hello Hello Hello, world!
