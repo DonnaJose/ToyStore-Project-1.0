@@ -58,9 +58,9 @@ stages:
               publishLocation: 'Container'
             displayName: 'Publish Build Artifacts'
           - bash: echo $(Build.SourceBranchName) ABC  
-  -stage: Dev
-   displayName : Dev Staging
-   condition: |
+  - stage: Dev
+    displayName : Dev Staging
+    condition: |
       and
       (
         succeeded(),
