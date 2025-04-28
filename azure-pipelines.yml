@@ -24,13 +24,7 @@ pool:
 #               inputs:
 #                 mavenPomFile: 'pom.xml'
 #                 goals: 'clean compile' 
-schedules:
-- cron: '* * * * *'
-  displayName: 'Deploy every day at 3 A.M.'
-  branches:
-    include:
-    - release
-  always: false
+
 stages:
   - stage: Build
     displayName: 'Build Stage'
