@@ -72,12 +72,14 @@ stages:
         displayName: Dev job  
   - stage: Test
     displayName : Test Staging
-    condition: |
-      and
-      (
-        succeeded(),
-        eq(variables['Build.SourceBranchName'], 'master')
-      )
+    schedules:
+    - cron: '3 * * * *'
+      displayName: 'Deploy every 3 mins'
+      branches:
+        include:
+        - master
+      always: false
+    condition: and(succeeded(), eq(variables['Build.Reason'], 'Schedule'))
     jobs:
       - job: Test
         displayName: Dev job        
