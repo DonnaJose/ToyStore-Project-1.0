@@ -36,7 +36,6 @@ stages:
         steps:
           - bash: echo $(branch_name)
           - task: JavaToolInstaller@0
-          displayName: "check here"
             inputs:
               versionSpec: '17'
               jdkArchitectureOption: 'x64'
@@ -67,24 +66,17 @@ stages:
         succeeded(),
         eq(variables['Build.SourceBranchName'], 'master')
       )
-   jobs:
-     -job: DevJob 
-  -stage: Test
-   displayName : Test Phase
-   condition: |
+    jobs:
+      - job: DevJob
+        displayName: Dev job  
+  - stage: Test
+    displayName : Test Staging
+    condition: |
       and
       (
         succeeded(),
         eq(variables['Build.SourceBranchName'], 'master')
       )
-   jobs:
-     -job: Test Job    
-
-# steps:
-# - script: echo Hello Hello Hello, world!
-#   displayName: 'Run a one-line script'
-
-# - script: |
-#     echo Add other tasks to build, test, and deploy your project.
-#     echo See https://aka.ms/yaml
-#   displayName: 'Run a multi-line script'
+    jobs:
+      - job: Test
+        displayName: Dev job        
