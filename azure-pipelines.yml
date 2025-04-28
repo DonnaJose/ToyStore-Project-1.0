@@ -34,7 +34,7 @@ stages:
           vmImage: 'ubuntu-latest'
 
         steps:
-          - bash: echo $(branch_name)
+          - bash: echo $(branch_name) EFGH 
           - task: JavaToolInstaller@0
             inputs:
               versionSpec: '17'
