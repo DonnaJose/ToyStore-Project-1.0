@@ -36,6 +36,7 @@ stages:
         steps:
           - bash: echo $(branch_name)
           - task: JavaToolInstaller@0
+          displayName: "check here"
             inputs:
               versionSpec: '17'
               jdkArchitectureOption: 'x64'
