@@ -25,7 +25,7 @@ pool:
 #                 mavenPomFile: 'pom.xml'
 #                 goals: 'clean compile' 
 schedules:
-- cron: '3 * * * *'
+- cron: '* * * * *'
   displayName: 'Deploy every day at 3 A.M.'
   branches:
     include:
@@ -82,4 +82,4 @@ stages:
     condition: and(succeeded(), eq(variables['Build.Reason'], 'Schedule'))
     jobs:
       - job: Test
-        displayName: Dev job        
+        displayName: Test job        
